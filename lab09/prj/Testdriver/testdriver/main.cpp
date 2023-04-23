@@ -1,99 +1,78 @@
 #include <iostream>
+#include <ModulesKrasnitska.h>
 
 using namespace std;
 
+// Функція для тестування
+void testGasCost(double gasVolume, double expectedCost) {
+    double actualCost = getGasCost(gasVolume);
+    string status = actualCost == expectedCost ? "passed" : "failed";
+    cout << "Test case with gas volume " << gasVolume << ": " << status << endl;
+    cout << "Expected cost: " << expectedCost << ", actual cost: " << actualCost << endl;
+}
+
 int main() {
-    double gasVolume, gasCost;
-
-    gasVolume = 300;
-
-    cout << "Введіть обʼєм використаного природного газу за місяць (м^3): ";
-    cin >> gasVolume;
-
-    if (gasVolume <= 208) {
-        gasCost = gasVolume * 1.299;
-    } else if (gasVolume <= 500) {
-        gasCost = 208 * 1.299 + (gasVolume - 208) * 1.788;
-    } else {
-        gasCost = 208 * 1.299 + 292 * 1.788 + (gasVolume - 500) * 3.645;
-    }
-
-    cout << "Сума до сплати за спожитий газ: " << gasCost << " грн." << endl;
+    // Виконуємо тест-кейси
+    testGasCost(100, 129.9);
+    testGasCost(300, 584.92);
+    testGasCost(700, 2431.1);
 
     return 0;
 }
 
 #include <iostream>
-#include <map>
+#include <cassert>
+#include <ModulesKrasnitska.h>
 
 using namespace std;
 
+// Функція для тестування
+int sum(int a, int b) {
+    return a + b;
+}
+
+// Тест-кейс для функції sum
+void test_sum() {
+    assert(sum(2, 3) == 5);  // Перевірка 2 + 3 = 5
+    assert(sum(-2, 3) == 1); // Перевірка -2 + 3 = 1
+    assert(sum(0, 0) == 0);  // Перевірка 0 + 0 = 0
+}
+
 int main() {
-    map<int, pair<string, string>> sizes = {
-        {220, {"35", "2.5"}},
-        {225, {"36", "3"}},
-        {230, {"36.5", "3.5"}},
-        {235, {"37", "4"}},
-        {240, {"38", "4.5"}},
-        {245, {"38.5", "5"}},
-        {250, {"39", "5.5"}},
-        {255, {"40", "6"}},
-        {260, {"40.5", "6.5"}},
-        {265, {"41", "7"}},
-        {270, {"42", "7.5"}},
-        {275, {"42.5", "8"}},
-        {280, {"43", "8.5"}},
-        {285, {"44", "9"}},
-        {290, {"44.5", "9.5"}},
-        {295, {"45", "10"}},
-        {300, {"46", "10.5"}},
-        {305, {"47", "11"}},
-        {310, {"47.5", "11.5"}},
-        {315, {"48", "12"}},
-        {320, {"49", "12.5"}},
-        {325, {"50", "13"}},
-        {330, {"51", "13.5"}},
-        {335, {"52", "14"}},
-    };
-
-    int size_cm;
-    cout << "Введіть розмір взуття у сантиметрах: ";
-    cin >> size_cm;
-
-    if (sizes.count(size_cm)) {
-        cout << "Розмір взуття в системі України: " << sizes[size_cm].first << endl;
-        cout << "Розмір взуття в системі Великобританії: " << sizes[size_cm].second << endl;
-    } else {
-        cout << "Розмір взуття не знайдено" << endl;
-    }
-
+    test_sum(); // Виклик тесту для функції sum
+    cout << "All tests passed!\n";
     return 0;
 }
 
 #include <iostream>
+#include <cassert>
+#include <ModulesKrasnitska.h>
 
-int main() {
-    unsigned int n = 42;
-    std::cout << "Введіть невід'ємне ціле число N: ";
-    std::cin >> n;
+using namespace std;
 
-    int count = 0;
-    int bit = n & 1;
-
-    if (bit == 1) {
-        while ((n & 1) == 0 && n > 0) {
-            count++;
-            n >>= 1;
-        }
-    } else {
-        while ((n & 1) == 1) {
-            count++;
-            n >>= 1;
+// Функція для тестування
+bool is_prime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= n; ++i) {
+        if (n % i == 0) {
+            return false;
         }
     }
-
-    std::cout << "Кількість " << (bit == 1 ? "нулів" : "одиниць") << " в числі N дорівнює " << count << std::endl;
-
-    return 0;
+    return true;
 }
 
+// Тест-кейс для функції is_prime
+void test_is_prime() {
+    assert(is_prime(2) == true);     // Перевірка простого числа 2
+    assert(is_prime(17) == true);    // Перевірка простого числа 17
+    assert(is_prime(4) == false);    // Перевірка складеного числа 4
+    assert(is_prime(100) == false);  // Перевірка складеного числа 100
+}
+
+int main() {
+    test_is_prime(); // Виклик тесту для функції is_prime
+    cout << "All tests passed!\n";
+    return 0;
+}
