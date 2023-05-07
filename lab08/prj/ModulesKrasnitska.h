@@ -29,4 +29,27 @@ int main() {
     int count = 0;
     int bit = n & 1;
 
+    #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+using namespace std;
+#include <iostream>
+#include <fstream>
+#include <ctime>
+
+int main() {
+    std::ofstream outfile("input.txt", std::ios_base::app); 
+#include <iostream>
+#include <fstream>
+#include "Krasnitska.h"
+
+using namespace std;
+
+int main() {
+    double x, y, z;
+    int v;
+
 #endif // MODULESKRASNITSKA_H_INCLUDED
