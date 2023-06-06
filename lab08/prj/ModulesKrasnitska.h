@@ -68,61 +68,51 @@ void HelloWorld()
 class ClassLab12_Krasnitska
 {
 public:
-    ClassLab12_Krasnitska(const float length = 1, const float width = 1, const float height = 1) :
-        Length(length),
-        Width(width),
-        Height(height)
+    ClassLab12_Krasnitska(const float a = 1, const float b= 1):
+        a(a),
+        b(b),
+        
     {
 
     }
-    float getV();
-    float getLength();
-    float getWidth();
-    float getHeight();
-    float changeLength(float length);
-    float changeWidth(float width);
-    float changeHeight(float heigth);
+    float getP();
+    float geta();
+    float getb ();
+    float changea(float a);
+    float changeb(float b);
 
 private:
-    float Length;
-    float Width;
-    float Height;
+    float a;
+    float b;
+    
 };
 
-float ClassLab12_Krasnitska::getV()
+float ClassLab12_Krasnitska::getP()
 {
-    return Length * Width * Height;
+    return 2*(a+b);
 }
 
-float ClassLab12_Krasnitska::changeLength(float length)
+float ClassLab12_Krasnitska::changeLength(float a)
 {
-    Length = length;
+    a = a;
 }
 
-float ClassLab12_Krasnitska::changeWidth(float width)
+float ClassLab12_Krasnitska::changeWidth(float b)
 {
-    Width = width;
+    b = b;
 }
 
-float ClassLab12_Krasnitska::changeHeight(float height)
-{
-    Height = height;
-}
 
 float ClassLab12_Krasnitska::getLength()
 {
-    return Length;
+    return a;
 }
 
 float ClassLab12_Krasnitska::getHeight()
 {
-    return Height;
+    return b;
 }
 
-float ClassLab12_Krasnitska::getWidth()
-{
-    return Width;
-}
 
 bool checkFileInFolder()
 {
@@ -147,10 +137,9 @@ bool checkFileInFolder()
 std::string writeResultToFile(ClassLab12_Krasnitska akvarium, int counter)
 {
     return "Test Suite ¹" + std::to_string(counter)
-     + "\nLength = " + std::to_string(akvarium.getLength())
-     + "\theight = " + std::to_string(akvarium.getHeight())
-     + "\twidth = " + std::to_string(akvarium.getWidth())
-     + "\nResult = " + std::to_string(akvarium.getV()) + "\n";
+     + "\nLength = " + std::to_string(akvarium.geta())
+     + "\theight = " + std::to_string(akvarium.getb())
+     + "\nResult = " + std::to_string(akvarium.getP()) + "\n";
 }
 
 
